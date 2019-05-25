@@ -13,7 +13,7 @@ class RoomController extends AbstractController
 
 
     /**
-     * @Route("/room/list", name="room_list", methods={"GET"})
+     * @Route("/room/list", name="room_list", methods={"GET","OPTIONS"})
      */
 
     public function list(EntityManagerInterface $em)
@@ -31,7 +31,7 @@ class RoomController extends AbstractController
 
 
     /**
-     * @Route("/room/create", name="room_create", methods={"POST"})
+     * @Route("/room/create", name="room_create", methods={"POST","OPTIONS"})
      */
 
     public function create(Request $request, EntityManagerInterface $em)
