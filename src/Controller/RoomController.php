@@ -50,16 +50,16 @@ class RoomController extends AbstractController
         for ($port = 8000; $port <= 9000; $port++) {
 
             //CHECK IF PORT IS OCCUPIED
-            $check = shell_exec("netstat -anp | grep $port");
+            $check = shell_exec("sudo netstat -anp | grep $port");
 
             if (strlen($check) === 0) {
 
                 //START A PEERFLIX PROCESS IN BACKGROUND WITH THE FREE PORT
                 $command = "peerflix '$link' -h 0.0.0.0 -p $port";
-                shell_exec("pm2 start \"$command\" --name \"$port\"");
+                shell_exec("sudo pm2 start \"$command\" --name \"$port\"");
 
                 //KILL PROCESS IN 3 HOURS
-                shell_exec("echo \"pm2 delete $port\" | at now + 3 hour ");
+                shell_exec("echo \"sudo pm2 delete $port\" | at now + 3 hour ");
 
                 $film = new Film();
                 $film->setCreated(new \DateTime());
